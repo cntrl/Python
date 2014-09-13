@@ -27,15 +27,15 @@ def monster_crawler(maxPages, stichwort, stadt, radius):
             Stelle = link.string
             Link = link.get('href')
             hyperlink_crawler(Link)
-            #daten = [jobtitel, href, Stelle, Link]
-            #print(daten)
-            print(Stelle)
-            print(href)
-            #outputList.append(daten)
+            daten = [jobtitel, href]
+            # print(daten)
+            # print(Stelle)
+            # print(href)
+            outputList.append(daten)
 
         page += 1
 
-    #print(*outputList)
+    print(outputList)
     #out = csv.writer(open("jobs.csv","w"), delimiter=',')
     #out.writerow(outputList)
 
@@ -55,7 +55,12 @@ def hyperlink_crawler(item_url):
         href = link.get('href')
         href = href[47:len(href)]
         href = href.replace('+', ' ')
+        # print href
 
 
+anzahl = raw_input("Wieviele Seiten sollen gecrawled werden?")
+query = raw_input("Nach welchem Stichwort soll gesucht werden?")
+wo = raw_input("In welchem Ort soll gesucht werden?")
+rad = raw_input("In welchem Radius?")
 
-monster_crawler(2, "Werkstudent", "Berlin", 30)
+monster_crawler(int(anzahl), str(query), str(wo), int(rad))
