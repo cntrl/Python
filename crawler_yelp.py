@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 def hyperlink_crawler(item_url):
     # sourceCode = requests.get(item_url)
-    # sourceText = sourceCode.text
+    sourceText = sourceCode.text
     soup = BeautifulSoup(sourceText)
     spans = soup.findAll('span', {'itemprop': 'reviewCount'})
     for span in spans:
