@@ -15,7 +15,9 @@ def hyperlink_crawler(item_url):
 maxpages = 20
 page = 10
 i = 1
-url = "http://www.yelp.de/search?find_desc=Thailändisches+Restaurant&find_loc=Berlin&ns=1#start=" + str(page)
+url = ("http://www.yelp.de/search?find_desc"
+       "=Thailändisches+Restaurant&find_loc=Berlin&ns=1#start="
+       + str(page))
 print(url)
 sourceCode = requests.get(url)
 sourceText = sourceCode.text
