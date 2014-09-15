@@ -29,7 +29,8 @@ def trade_spider(max_pages):
         source_code = requests.get(url)
         plain_text = source_code.text
         soup = BeautifulSoup(plain_text)
-        links = soup.findAll('a', {'class': lambda L: L and L.startswith('slJobTitle')})
+        links = soup.findAll('a', {'class': lambda L: L and L.startswith
+                                   ('slJobTitle')})
         for link in links:
             Link = link.get('href')
             print("------")
