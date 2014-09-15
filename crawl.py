@@ -33,13 +33,14 @@ def trade_spider(max_pages):
         for link in links:
             Link = link.get('href')
             print("------")
-            # print(Firma)
             print(Link)
             hyperlink_crawler(Link)
-            page += 1
-        # for image in soup.findAll('img', {'class': 'trovixCompanyLogo'}):
-        #     Firma j image.get('alt', '')
+        for image in soup.findAll('img', {'class': 'trovixCompanyLogo'}):
+            Firma = image.get('alt', '')
+            print(image)
+            print(Firma)
 
+        page += 1
 
 
 trade_spider(2)
