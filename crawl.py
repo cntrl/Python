@@ -10,7 +10,8 @@ def trade_spider(max_pages):
         source_code = requests.get(url)
         plain_text = source_code.text
         soup = BeautifulSoup(plain_text)
-        for link in soup.findAll('a', {'class': 'slJobTitle fnt11'}):
+        links = soup.findAll('a', {'class': lambda L: L and L.startswith('slJobTitle')})
+        for link in links:
             Stelle = link.string
             Link = link.get('href')
         # for image in soup.findAll('img', {'class': 'trovixCompanyLogo'}):
@@ -23,4 +24,4 @@ def trade_spider(max_pages):
 
         page += 1
 
-trade_spider(1)
+trade_spider(2)
