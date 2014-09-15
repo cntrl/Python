@@ -17,7 +17,7 @@ def trade_spider(max_pages):
         #     Firma = image.get('alt', '')
 
             print("------")
-            # print(Stelle)
+            print(Stelle)
             # print(Firma)
             print(Link)
 
