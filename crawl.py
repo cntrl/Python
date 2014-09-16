@@ -44,4 +44,4 @@ def trade_spider(max_pages):
         page += 1
 
 
-trade_spider(2)
+trade_spider(1)
