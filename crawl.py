@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def hyperlink_crawler(item_url):
+def get_subsites(item_url):
     sourceCode = requests.get(item_url)
     sourceText = sourceCode.text
     soup = BeautifulSoup(sourceText)
@@ -21,7 +21,7 @@ def hyperlink_crawler(item_url):
     print(heading)
 
 
-def trade_spider(max_pages):
+def main_crawler(max_pages):
     page = 1
     while page <= max_pages:
         url = ("http://jobsuche.monster.de/Jobs/"
@@ -35,7 +35,7 @@ def trade_spider(max_pages):
             Link = link.get('href')
             print("------")
             print(Link)
-            hyperlink_crawler(Link)
+            get_subsites(Link)
         for image in soup.findAll('img', {'class': 'trovixCompanyLogo'}):
             Firma = image.get('alt', '')
             print(image)
@@ -44,4 +44,4 @@ def trade_spider(max_pages):
         page += 1
 
 
-trade_spider(1)
+main_crawler(1)
