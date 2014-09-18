@@ -2,14 +2,14 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def mainCrawler(query, max_pages):
+def mainCrawler(query, maxPages):
     page = 1
-    while page <= max_pages:
+    while page <= maxPages:
         url = ("http://jobsuche.monster.de/Jobs/"
                "?q=" + query + "&pg=" + str(page) + "&cy=de")
-        source_code = requests.get(url)
-        plain_text = source_code.text
-        soup = BeautifulSoup(plain_text)
+        QuellCode = requests.get(url)
+        QuellText = QuellCode.text
+        soup = BeautifulSoup(QuellText)
         links = soup.findAll('a', {'class': lambda L: L and L.startswith
                                    ('slJobTitle')})
         for link in links:
@@ -25,8 +25,8 @@ def mainCrawler(query, max_pages):
         page += 1
 
 
-def getHyperlinks(item_url):
-    Quellcode = requests.get(item_url)
+def getHyperlinks(itemUrl):
+    Quellcode = requests.get(itemUrl)
     Quelltext = Quellcode.text
     soup = BeautifulSoup(Quelltext)
     for header in soup.findAll('title'):
