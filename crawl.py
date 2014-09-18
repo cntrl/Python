@@ -30,23 +30,22 @@ def getHyperlinks(itemUrl):
     Quelltext = Quellcode.text
     soup = BeautifulSoup(Quelltext)
     for header in soup.findAll('title'):
-        global jobtitel, href
-        jobtitel = header.string
-        href = ""
+        print header
 
     for link in soup.findAll('a', {'data-track': 'ATB-AllJobs'}):
-        href = link.get('href')
-        href = href[47:len(href)]
-        href = href.replace('+', ' ')
-        href = href.replace('%26', '&')
-        href = href.replace('%c3%bc', 'ue')
-        print href
+        companyName = link.get('href')
+        companyName = companyName[47:len(companyName)]
+        companyName = companyName.replace('+', ' ')
+        companyName = companyName.replace('%26', '&')
+        companyName = companyName.replace('%c3%bc', 'ue')
+        print companyName
 
     heading = soup.findAll('h1')
     print(heading)
 
 
-# Webcrawler starten. Argument 1 gibt den gewünschten Suchbegriff an,
+# Webcrawler starten.
+# Argument 1 gibt den gewünschten Suchbegriff an,
 # Argument 2 die Anzahl an zu crawlenden Suchseiten.
 page = raw_input("Wieviele Seiten sollen gecrawled werden? ")
 query = raw_input("Nach welchem Suchbegriff soll gesucht werden? ")
