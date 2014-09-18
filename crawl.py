@@ -2,11 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def mainCrawler(max_pages):
+def mainCrawler(query, max_pages):
     page = 1
     while page <= max_pages:
         url = ("http://jobsuche.monster.de/Jobs/"
-               "?q=Energiemanager&pg=" + str(page) + "&cy=de")
+               "?q=" + query + "&pg=" + str(page) + "&cy=de")
         source_code = requests.get(url)
         plain_text = source_code.text
         soup = BeautifulSoup(plain_text)
@@ -43,4 +43,4 @@ def getHyperlinks(item_url):
     heading = soup.findAll('h1')
     print(heading)
 
-mainCrawler(1)
+mainCrawler("Energiemanager", 1)
