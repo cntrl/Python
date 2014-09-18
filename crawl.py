@@ -48,6 +48,6 @@ def getHyperlinks(itemUrl):
 
 # Webcrawler starten. Argument 1 gibt den gewünschten Suchbegriff an,
 # Argument 2 die Anzahl an zu crawlenden Suchseiten.
-page = raw_input("Wieviele Seiten sollen gecrawled werden? >>")
-query = raw_input("Nach welchem Suchbegriff soll gesucht werden? >>")
+page = raw_input("Wieviele Seiten sollen gecrawled werden? ")
+query = raw_input("Nach welchem Suchbegriff soll gesucht werden? ")
 mainCrawler(query, page)
