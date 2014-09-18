@@ -43,4 +43,7 @@ def getHyperlinks(item_url):
     heading = soup.findAll('h1')
     print(heading)
 
+
+# Webcrawler starten. Argument 1 gibt den gewünschten Suchbegriff an,
+# Argument 2 die Anzahl an zu crawlenden Suchseiten.
 mainCrawler("Energiemanager", 1)
