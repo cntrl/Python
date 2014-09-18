@@ -38,6 +38,8 @@ def getHyperlinks(itemUrl):
         href = link.get('href')
         href = href[47:len(href)]
         href = href.replace('+', ' ')
+        href = href.replace('%26', '&')
+        href = href.replace('%c3%bc', 'ue')
         print href
 
     heading = soup.findAll('h1')
@@ -46,4 +48,6 @@ def getHyperlinks(itemUrl):
 
 # Webcrawler starten. Argument 1 gibt den gewünschten Suchbegriff an,
 # Argument 2 die Anzahl an zu crawlenden Suchseiten.
-mainCrawler("Energiemanager", 1)
+page = raw_input("Wieviele Seiten sollen gecrawled werden? >>")
+query = raw_input("Nach welchem Suchbegriff soll gesucht werden? >>")
+mainCrawler(query, page)
