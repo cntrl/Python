@@ -1,17 +1,19 @@
-import requests
+import requests, csv
 from bs4 import BeautifulSoup
 
-
+global num
+global inventory
 num = 0
 inventory = {}
 
 
 def mainCrawler(maxPages):
     page = 1
-    global num, inventory
+    global num
+    global inventory
     while page <= maxPages:
         url = ("https://de.statista.com/statistik/suche/"
-               "?accuracy=and&companies=1&itemsPerPage=1"
+               "?accuracy=and&companies=1&itemsPerPage=3"
                "&q=Bau&subCategory=0&p=" + str(page))
         QuellCode = requests.get(url)
         QuellText = QuellCode.text
@@ -24,6 +26,9 @@ def mainCrawler(maxPages):
         page += 1
         num += 1
     print inventory
+    with open('test.csv', 'w') as f:
+        w = csv.writer(f)
+        w.writerows(inventory.items())
 
 
 def getHyperlinks(itemUrl):
@@ -40,7 +45,8 @@ def getHyperlinks(itemUrl):
         # print zwires
         zahl += 1
     print num
-    inventory[num] = zwires
+    print zwires
+    inventory[str(num)] = zwires
 
 # Webcrawler starten.
-mainCrawler(2)
+mainCrawler(10)
