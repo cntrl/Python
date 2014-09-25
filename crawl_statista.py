@@ -1,4 +1,5 @@
-import requests, csv
+import requests
+import csv
 from bs4 import BeautifulSoup
 
 global num
@@ -8,30 +9,32 @@ inventory = {}
 
 
 def mainCrawler(maxPages):
-    page = 1
+    page = 1800
     global num
     global inventory
     while page <= maxPages:
         url = ("https://de.statista.com/statistik/suche/"
                "?accuracy=and&companies=1&itemsPerPage=3"
-               "&q=Bau&subCategory=0&p=" + str(page))
+               "&subCategory=0&p=" + str(page))
         QuellCode = requests.get(url)
         QuellText = QuellCode.text
         soup = BeautifulSoup(QuellText)
+        branche = soup.find('p', attrs={'class': 'statDesc'})
+        branchen = branche.text
         for link in soup.findAll('a', {'tabindex': '2'}):
             urlHyperlink = "https://de.statista.com/" + link['href']
             # print urlHyperlink
-            getHyperlinks(urlHyperlink)
+            getHyperlinks(urlHyperlink, branchen)
             # print(link.span)
         page += 1
         num += 1
-    print inventory
-    with open('test.csv', 'w') as f:
+    # print inventory
+    with open('test10.csv', 'w') as f:
         w = csv.writer(f)
         w.writerows(inventory.items())
 
 
-def getHyperlinks(itemUrl):
+def getHyperlinks(itemUrl, branchen):
     global num, inventory
     Quellcode = requests.get(itemUrl)
     Quelltext = Quellcode.text
@@ -40,13 +43,14 @@ def getHyperlinks(itemUrl):
     zahl = 0
     for header in soup.findAll('td'):
         if zahl % 2 != 0:
-            zwires.append(header)
+            zwires.append(header.contents)
             # print header
         # print zwires
         zahl += 1
-    print num
-    print zwires
+    zwires.append(branchen)
     inventory[str(num)] = zwires
+    # print num
+    # print zwires
 
 # Webcrawler starten.
-mainCrawler(10)
+mainCrawler(2000)
