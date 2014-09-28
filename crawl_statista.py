@@ -39,6 +39,7 @@ def mainCrawler(startPage, maxPages):
     # for key, value in inventory.items():
     #     w.writerows([key, value])
 
+
 def getHyperlinks(itemUrl, brancheText):
     global num, inventory
     Quellcode = requests.get(itemUrl)
@@ -63,4 +64,4 @@ def getHyperlinks(itemUrl, brancheText):
 
 # Webcrawler starten.
 # Argument 1 = Erste Seite, Argument 2 = Letzte Seite
-mainCrawler(1, 2)
+mainCrawler(9501, 9999)
